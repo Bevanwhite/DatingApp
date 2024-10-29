@@ -60,7 +60,7 @@ namespace API.Controllers
                 if (computedHash[i] != user.PasswordHash[i]) return Unauthorized("invaild password");
             }
 
-             return new UserDto
+            return new UserDto
             {
                 Username = user.UserName,
                 Token = _tokenService.CreateToken(user)
