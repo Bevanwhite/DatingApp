@@ -2,6 +2,18 @@
 testapi:
 	cd API &&	dotnet watch --no-hot-reload
 
+dropdatabase:
+	cd API && dotnet ef drop database
+
+updatedatabase:
+	cd API && dotnet ef update database
+
+addmigrations:
+	cd API && dotnet ef migrations add ${name}
+
+removeMigrations:
+	cd API && dotnet ef migrations remove ${name}
+
 testclient:
 	cd client && ng serve
 
