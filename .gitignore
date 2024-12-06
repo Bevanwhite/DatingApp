@@ -14,3 +14,7 @@ obj/
 .vscode/
 .idea/
 # End of https://www.toptal.com/developers/gitignore/api/dotnetcore
+
+# added database files
+API/datingapp.db-shm
+API/datingapp.db-wal
