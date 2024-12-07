@@ -18,3 +18,5 @@ obj/
 # added database files
 API/datingapp.db-shm
 API/datingapp.db-wal
+
+.idea/
