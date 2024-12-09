@@ -33,6 +33,12 @@ export class MemberDetailComponent implements OnInit {
   ngOnInit(): void {
     this.loadMember();
 
+    this.route.queryParams.subscribe({
+      next: (params) => {
+        params['tab'] && this.selectTab(params['tab']);
+      },
+    });
+
     this.galleryOptions = [
       {
         width: '500px',
@@ -72,6 +78,10 @@ export class MemberDetailComponent implements OnInit {
     });
   }
 
+  selectTab(heading: string) {
+    this.memberTabs!.tabs.find((x) => x.heading === heading)!.active = true;
+  }
+
   loadMessages() {
     if (this.member) {
       this.messageService.getMessageThread(this.member.userName).subscribe({
@@ -83,6 +93,7 @@ export class MemberDetailComponent implements OnInit {
   onTabActivated(data: TabDirective) {
     this.activeTab = data;
     if (this.activeTab.heading === 'Messages') {
+      this.loadMessages();
     }
   }
 }
