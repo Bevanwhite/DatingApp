@@ -3,7 +3,7 @@ testapi:
 	cd API &&	dotnet watch --no-hot-reload
 
 dropdatabase:
-	cd API && dotnet ef drop database
+	cd API && dotnet ef database drop
 
 updatedatabase:
 	cd API && dotnet ef update database

@@ -36,7 +36,7 @@
       *ngIf="accountService.currentUser$ | async as user"
       dropdown
     >
-      <img src="{{ user.photoUrl }}" alt="user photo" />
+      <img src="{{ user.photoUrl || './assets/user.png' }}" alt="user photo" />
       <a class="dropdown-toggle text-light ms-2" dropdownToggle
         >Welcome {{ user.knownAs | titlecase }}</a
       >
