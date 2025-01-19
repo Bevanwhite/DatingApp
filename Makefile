@@ -28,3 +28,6 @@ createService:
 
 createInterceptor:
 	cd client && ng g interceptor _interceptors/${name} --skip-tests
+
+createDirective:
+	cd client && ng g d _directives/${name} --skip-tests
