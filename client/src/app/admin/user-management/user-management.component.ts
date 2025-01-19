@@ -12,7 +12,9 @@ export class UserManagementComponent implements OnInit {
 
   constructor(private adminService: AdminService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getUsersWithRoles();
+  }
 
   getUsersWithRoles() {
     this.adminService.getUsersWithRoles().subscribe({
