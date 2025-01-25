@@ -49,7 +49,7 @@
   </div>
 
   <div class="card-footer">
-    <form #messsageForm="ngForm" (ngSubmit)="sendMessage()" autocomplete="off">
+    <form #messageForm="ngForm" (ngSubmit)="sendMessage()" autocomplete="off">
       <div class="input-group">
         <input
           name="messageContent"
@@ -61,7 +61,7 @@
         />
         <div class="input-group-append">
           <button
-            [disabled]="!messsageForm.valid"
+            [disabled]="!messageForm.valid"
             class="btn btn-primary"
             type="submit"
           >
