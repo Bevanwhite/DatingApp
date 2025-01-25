@@ -28,7 +28,7 @@ namespace DatingApp.API.SignalR
 
         public override async Task OnDisconnectedAsync(Exception exception)
         {
-            var isOffline = await _tacker.UserConnected(Context.User.GetUserName(), Context.ConnectionId);
+            var isOffline = await _tacker.UserDisconnected(Context.User.GetUserName(), Context.ConnectionId);
 
             if (isOffline)
                 await Clients.Others.SendAsync("UserIsOffline", Context.User.GetUserName());
