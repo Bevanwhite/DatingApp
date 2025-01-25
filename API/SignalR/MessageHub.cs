@@ -3,6 +3,7 @@ using API.Entities;
 using API.Extensions;
 using API.Interfaces;
 using AutoMapper;
+using DatingApp.API.SignalR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 
@@ -11,18 +12,21 @@ namespace API.SignalR
     [Authorize]
     public class MessageHub : Hub
     {
-        private IMessageRepository _messageRepository;
-        private IMapper _mapper;
+        private readonly IMessageRepository _messageRepository;
+        private readonly IMapper _mapper;
+        private readonly IHubContext<PresenceHub> _presenceHub;
         private readonly IUserRepository _userRepository;
 
         public MessageHub(
             IMessageRepository messageRepository,
             IUserRepository userRepository,
-            IMapper mapper)
+            IMapper mapper,
+            IHubContext<PresenceHub> presenceHub)
         {
             _userRepository = userRepository;
             _messageRepository = messageRepository;
             _mapper = mapper;
+            _presenceHub = presenceHub;
         }
 
         public override async Task OnConnectedAsync()
@@ -76,6 +80,24 @@ namespace API.SignalR
             if (group.Connections.Any(x => x.UserName == recipient.UserName))
             {
                 message.DateRead = DateTime.UtcNow;
+            }
+            else
+            {
+                var connections = await PresenceTracker
+                    .GetConnectionsForUser(recipient.UserName);
+
+                if (connections != null)
+                {
+                    await _presenceHub.Clients.Clients(connections)
+                        .SendAsync("NewMessageReceived",
+                        new
+                        {
+                            username = sender.UserName,
+                            knownAs = sender.KnownAs
+                        });
+                }
+
+
             }
 
             _messageRepository.AddMessage(message);
