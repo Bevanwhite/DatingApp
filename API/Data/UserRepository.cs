@@ -22,7 +22,7 @@ namespace API.Data
         public async Task<MemberDto> GetMemberAsync(string username)
         {
             return await _context.Users
-                .Where(x=> x.UserName == username)
+                .Where(x => x.UserName == username)
                 .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
                 .SingleOrDefaultAsync();
         }
@@ -34,7 +34,7 @@ namespace API.Data
             query = query.Where(u => u.UserName != userParams.CurrentUsername);
             query = query.Where(u => u.Gender == userParams.Gender);
 
-            var minDob = DateOnly.FromDateTime(DateTime.Today.AddYears(-userParams.MaxAge -1));
+            var minDob = DateOnly.FromDateTime(DateTime.Today.AddYears(-userParams.MaxAge - 1));
 
             var maxDob = DateOnly.FromDateTime(DateTime.Today.AddYears(-userParams.MinAge));
 
@@ -47,8 +47,8 @@ namespace API.Data
             };
 
             return await PagedList<MemberDto>.CreateAsync(
-                query.AsNoTracking().ProjectTo<MemberDto>(_mapper.ConfigurationProvider), 
-                userParams.PageNumber, 
+                query.AsNoTracking().ProjectTo<MemberDto>(_mapper.ConfigurationProvider),
+                userParams.PageNumber,
                 userParams.PageSize);
         }
 
@@ -69,11 +69,6 @@ namespace API.Data
             return await _context.Users
                 .Include(p => p.Photos)
                 .ToListAsync();
-        }
-
-        public async Task<bool> SaveAllAsync()
-        {
-            return await _context.SaveChangesAsync() > 0;
         }
 
         public void Update(AppUser user)
