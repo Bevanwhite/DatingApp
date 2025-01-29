@@ -1,0 +1,30 @@
+# fly.toml app configuration file generated for datingapp-wispy-tree-3385 on 2025-01-29T23:31:50+05:30
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'datingapp-wispy-tree-3385'
+primary_region = 'bom'
+
+[build]
+  image = 'jefferywhite/datingapp:latest'
+
+[env]
+  ASPNETCORE_URLS="http://+:8080"
+  CloudinarySettings__CloudName="dmabbcbbe"
+  CloudinarySettings__ApiKey="295455932442858"
+
+[experimental]
+  allowed_public_ports= []
+  auto_rollback = true
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  size = 'shared-cpu-1x'
