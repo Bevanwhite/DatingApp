@@ -2,6 +2,9 @@
 testapi:
 	cd API &&	dotnet watch --no-hot-reload
 
+testrun:
+	cd API && dotnet run
+
 dropdatabase:
 	cd API && dotnet ef database drop
 
