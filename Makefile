@@ -5,6 +5,9 @@ testapi:
 testrun:
 	cd API && dotnet run
 
+testrunclient:
+	cd client && ng build --configuration=production
+
 dropdatabase:
 	cd API && dotnet ef database drop
 
@@ -34,3 +37,21 @@ createInterceptor:
 
 createDirective:
 	cd client && ng g d _directives/${name} --skip-tests
+
+launchfly:
+	fly launch --image jefferywhite/${name}:latest
+
+lanuchsecrets:
+	fly secrets list
+
+setsecrets:
+	fly secrets set ${name}
+
+builddocker:
+	cd API && docker build -t jefferywhite/${name} .
+
+pushdocker:
+	cd API && docker push jefferywhite/${name}:latest
+
+lanuchdeploy:
+	fly deploy
