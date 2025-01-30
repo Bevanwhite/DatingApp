@@ -52,12 +52,11 @@ buildclient:
 	cd client && ng build --configuration=production
 
 builddocker:
-	cd API && docker build -t jefferywhite/${name} .
+	cd API && docker build -t jefferywhite/datingapp .
 
 pushdocker:
-	cd API && docker push jefferywhite/${name}:latest
-	
+	cd API && docker push jefferywhite/datingapp:latest
 
-lanuchdeploy:
+deploy:
 	fly deploy
 
