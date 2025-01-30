@@ -17,6 +17,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: "{{defultContext}}:API"
+          context: "{{defaultContext}}:API"
           push: true
           tags: jefferywhite/datingapp:latest
