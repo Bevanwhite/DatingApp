@@ -38,6 +38,7 @@ createInterceptor:
 createDirective:
 	cd client && ng g d _directives/${name} --skip-tests
 
+
 launchfly:
 	fly launch --image jefferywhite/${name}:latest
 
@@ -47,11 +48,16 @@ lanuchsecrets:
 setsecrets:
 	fly secrets set ${name}
 
+buildclient:
+	cd client && ng build --configuration=production
+
 builddocker:
 	cd API && docker build -t jefferywhite/${name} .
 
 pushdocker:
 	cd API && docker push jefferywhite/${name}:latest
+	
 
 lanuchdeploy:
 	fly deploy
+
