@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for datingapp-wispy-tree-3385 on 2025-01-29T23:31:50+05:30
+# fly.toml app configuration file generated for datingapp-old-wind-1438 on 2025-02-17T18:41:10+05:30
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'datingapp-wispy-tree-3385'
+app = 'datingapp-old-wind-1438'
 primary_region = 'bom'
 
 [build]
@@ -13,7 +13,7 @@ primary_region = 'bom'
   ASPNETCORE_URLS="http://+:8080"
   CloudinarySettings__CloudName="dmabbcbbe"
   CloudinarySettings__ApiKey="295455932442858"
-
+   
 [experimental]
   allowed_public_ports= []
   auto_rollback = true
