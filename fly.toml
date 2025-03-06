@@ -1,22 +1,18 @@
-# fly.toml app configuration file generated for datingapp-old-wind-1438 on 2025-02-17T18:41:10+05:30
+# fly.toml app configuration file generated for datingapp-weathered-rain-3828 on 2025-03-07T00:40:14+05:30
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'datingapp-old-wind-1438'
+app = 'datingapp-weathered-rain-3828'
 primary_region = 'bom'
-
-[build]
-  image = 'jefferywhite/datingapp:latest'
 
 [env]
   ASPNETCORE_URLS="http://+:8080"
   CloudinarySettings__CloudName="dmabbcbbe"
   CloudinarySettings__ApiKey="295455932442858"
-   
-[experimental]
-  allowed_public_ports= []
-  auto_rollback = true
+
+[build]
+  image = 'jefferywhite/datingapp:latest'
 
 [http_service]
   internal_port = 8080
