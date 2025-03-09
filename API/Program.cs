@@ -20,7 +20,7 @@ if (builder.Environment.IsDevelopment())
     connString = builder.Configuration.GetConnectionString("DefaultConnection");
 else
 {
-    connString = builder.Configuration.GetConnectionString("DATABASE_URL");
+    connString = builder.Configuration.GetConnectionString("DATABASEURL");
 }
 builder.Services.AddDbContext<DataContext>(opt =>
 {
